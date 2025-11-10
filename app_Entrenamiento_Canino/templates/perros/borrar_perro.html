@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Borrar Perro</h2>
+        
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="alert alert-danger">
+                    <h4>¿Está seguro que desea borrar al perro?</h4>
+                    <p><strong>Nombre:</strong> {{ perro.nombre }}</p>
+                    <p><strong>Raza:</strong> {{ perro.raza }}</p>
+                    <p><strong>Color:</strong> {{ perro.color }}</p>
+                    <p><strong>Dueño:</strong> {{ perro.cliente.nombre }}</p>
+                </div>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Sí, Borrar Perro</button>
+                    <a href="{% url 'ver_perro' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Actualizar Cliente</h2>
+        
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="POST" action="{% url 'realizar_actualizacion_cliente' cliente.id_cliente %}">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" name="nombre" value="{{ cliente.nombre }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Teléfono:</label>
+                            <input type="text" class="form-control" name="telefono" value="{{ cliente.telefono }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Email:</label>
+                            <input type="email" class="form-control" name="email" value="{{ cliente.email }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Dirección:</label>
+                            <input type="text" class="form-control" name="direccion" value="{{ cliente.direccion }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha de Registro:</label>
+                            <input type="date" class="form-control" name="fecha_registro" value="{{ cliente.fecha_registro|date:'Y-m-d' }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control" name="fecha_nacimiento" value="{{ cliente.fecha_nacimiento|date:'Y-m-d' }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Comentarios:</label>
+                        <textarea class="form-control" name="comentarios" rows="3">{{ cliente.comentarios }}</textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-warning">Actualizar Cliente</button>
+                    <a href="{% url 'ver_cliente' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

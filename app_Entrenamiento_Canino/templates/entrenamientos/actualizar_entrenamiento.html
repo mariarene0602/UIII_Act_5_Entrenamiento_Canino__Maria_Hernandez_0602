@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Actualizar Entrenamiento</h2>
+        
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="POST" action="{% url 'realizar_actualizacion_entrenamiento' entrenamiento.id_entrenamiento %}">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Perro:</label>
+                            <select class="form-select" name="perro" required>
+                                {% for perro in perros %}
+                                <option value="{{ perro.id_perro }}" {% if perro.id_perro == entrenamiento.perro.id_perro %}selected{% endif %}>
+                                    {{ perro.nombre }} (Dueño: {{ perro.cliente.nombre }})
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre del Entrenamiento:</label>
+                            <input type="text" class="form-control" name="nombre" value="{{ entrenamiento.nombre }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nivel:</label>
+                            <input type="text" class="form-control" name="nivel" value="{{ entrenamiento.nivel }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Lugar:</label>
+                            <input type="text" class="form-control" name="lugar" value="{{ entrenamiento.lugar }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha de Inicio:</label>
+                            <input type="date" class="form-control" name="fecha_inicio" value="{{ entrenamiento.fecha_inicio|date:'Y-m-d' }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Duración (horas):</label>
+                            <input type="number" step="0.01" class="form-control" name="duracion_horas" value="{{ entrenamiento.duracion_horas }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Costo:</label>
+                            <input type="number" step="0.01" class="form-control" name="costo" value="{{ entrenamiento.costo }}" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Descripción:</label>
+                        <textarea class="form-control" name="descripcion" rows="3" required>{{ entrenamiento.descripcion }}</textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-warning">Actualizar Entrenamiento</button>
+                    <a href="{% url 'ver_entrenamiento' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Borrar Cliente</h2>
+        
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="alert alert-danger">
+                    <h4>¿Está seguro que desea borrar al cliente?</h4>
+                    <p><strong>Nombre:</strong> {{ cliente.nombre }}</p>
+                    <p><strong>Email:</strong> {{ cliente.email }}</p>
+                    <p><strong>Teléfono:</strong> {{ cliente.telefono }}</p>
+                </div>
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Sí, Borrar Cliente</button>
+                    <a href="{% url 'ver_cliente' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

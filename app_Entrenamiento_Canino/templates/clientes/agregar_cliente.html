@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Agregar Nuevo Cliente</h2>
+        
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre:</label>
+                            <input type="text" class="form-control" name="nombre" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Teléfono:</label>
+                            <input type="text" class="form-control" name="telefono" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Email:</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Dirección:</label>
+                            <input type="text" class="form-control" name="direccion" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha de Registro:</label>
+                            <input type="date" class="form-control" name="fecha_registro" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control" name="fecha_nacimiento" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Comentarios:</label>
+                        <textarea class="form-control" name="comentarios" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Guardar Cliente</button>
+                    <a href="{% url 'ver_cliente' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

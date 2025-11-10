@@ -1,0 +1,41 @@
+<nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+    <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="{% url 'inicio' %}">
+                    🏠 Inicio
+                </a>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+                    📁 Clientes
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'agregar_cliente' %}">Agregar Cliente</a></li>
+                    <li><a class="dropdown-item" href="{% url 'ver_cliente' %}">Ver Cliente</a></li>
+                </ul>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+                    🐶 Perros
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'agregar_perro' %}">Agregar perros</a></li>
+                    <li><a class="dropdown-item" href="{% url 'ver_perro' %}">Ver perros</a></li>
+                </ul>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">
+                    🎾 Entrenamientos
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'agregar_entrenamiento' %}">Agregar entrenamientos</a></li>
+                    <li><a class="dropdown-item" href="{% url 'ver_entrenamiento' %}">Ver entrenamientos</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>

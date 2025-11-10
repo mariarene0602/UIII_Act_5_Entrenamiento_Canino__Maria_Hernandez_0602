@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Agregar Nuevo Perro</h2>
+        
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Cliente:</label>
+                            <select class="form-select" name="cliente" required>
+                                <option value="">Seleccionar cliente</option>
+                                {% for cliente in clientes %}
+                                <option value="{{ cliente.id_cliente }}">{{ cliente.nombre }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre del Perro:</label>
+                            <input type="text" class="form-control" name="nombre" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Raza:</label>
+                            <input type="text" class="form-control" name="raza" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Color:</label>
+                            <input type="text" class="form-control" name="color" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha de Nacimiento:</label>
+                            <input type="date" class="form-control" name="fecha_nacimiento" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Peso (kg):</label>
+                            <input type="number" step="0.01" class="form-control" name="peso" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Guardar Perro</button>
+                    <a href="{% url 'ver_perro' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

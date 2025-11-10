@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Lista de Entrenamientos</h2>
+        
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Perro</th>
+                                <th>Dueño</th>
+                                <th>Nivel</th>
+                                <th>Fecha Inicio</th>
+                                <th>Costo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entrenamiento in entrenamientos %}
+                            <tr>
+                                <td>{{ entrenamiento.id_entrenamiento }}</td>
+                                <td>{{ entrenamiento.nombre }}</td>
+                                <td>{{ entrenamiento.perro.nombre }}</td>
+                                <td>{{ entrenamiento.perro.cliente.nombre }}</td>
+                                <td>{{ entrenamiento.nivel }}</td>
+                                <td>{{ entrenamiento.fecha_inicio }}</td>
+                                <td>${{ entrenamiento.costo }}</td>
+                                <td>
+                                    <a href="{% url 'actualizar_entrenamiento' entrenamiento.id_entrenamiento %}" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="{% url 'borrar_entrenamiento' entrenamiento.id_entrenamiento %}" class="btn btn-danger btn-sm">Borrar</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="8" class="text-center">No hay entrenamientos registrados</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <a href="{% url 'agregar_entrenamiento' %}" class="btn btn-primary">Agregar Nuevo Entrenamiento</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

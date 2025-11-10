@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2>Agregar Nuevo Entrenamiento</h2>
+        
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Perro:</label>
+                            <select class="form-select" name="perro" required>
+                                <option value="">Seleccionar perro</option>
+                                {% for perro in perros %}
+                                <option value="{{ perro.id_perro }}">{{ perro.nombre }} (Dueño: {{ perro.cliente.nombre }})</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Nombre del Entrenamiento:</label>
+                            <input type="text" class="form-control" name="nombre" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nivel:</label>
+                            <input type="text" class="form-control" name="nivel" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Lugar:</label>
+                            <input type="text" class="form-control" name="lugar" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Fecha de Inicio:</label>
+                            <input type="date" class="form-control" name="fecha_inicio" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Duración (horas):</label>
+                            <input type="number" step="0.01" class="form-control" name="duracion_horas" required>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Costo:</label>
+                            <input type="number" step="0.01" class="form-control" name="costo" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Descripción:</label>
+                        <textarea class="form-control" name="descripcion" rows="3" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Guardar Entrenamiento</button>
+                    <a href="{% url 'ver_entrenamiento' %}" class="btn btn-secondary">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
